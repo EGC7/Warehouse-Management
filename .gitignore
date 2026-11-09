@@ -1,0 +1,25 @@
+# VS Code
+.vscode/
+
+# Compiled class files
+*.class
+
+# Package files
+*.jar
+*.war
+*.ear
+*.nar
+*.rar
+*.tar
+*.tar.gz
+*.zip
+
+# Virtual machine crash logs
+hs_err_pid*
+replay_pid*
+
+# Build directories (Maven e Gradle)
+target/
+build/
+bin/
+.gradle/
