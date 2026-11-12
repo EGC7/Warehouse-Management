@@ -6,8 +6,8 @@ public class Food extends PerishableProduct{
     private boolean isOrganic;
     
     @Override
-    public double calculateHandlingFee() {
-        return getPrice()*.02;
+    public double calculateHandlingFee(int amount) {
+        return getPrice()*.02 * amount;
     }
     
     public Food(){}
