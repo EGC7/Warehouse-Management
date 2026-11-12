@@ -7,7 +7,7 @@ public abstract class Product{ // TODO: Adicionar forma de destacar verificando 
     private int amountStorage, minStorage, splitTime, id;
 
     
-    public abstract double calculateHandlingFee();
+    public abstract double calculateHandlingFee(int amount); //? Vai ter que pegar esse valor de param do pedido do cliente.
     
     public Product(){}
 
@@ -23,7 +23,7 @@ public abstract class Product{ // TODO: Adicionar forma de destacar verificando 
         setSplitTime(splitTime);
 
     }
-    
+
     public Product(String name, double price,double weight,
                 int amountStorage, int minStorage, int splitTime) {
         this(name, "", price, weight, amountStorage, minStorage, splitTime);
@@ -131,5 +131,33 @@ public abstract class Product{ // TODO: Adicionar forma de destacar verificando 
 
     public void showDetails(){
         System.out.println(toString());
+    }
+    
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((name == null) ? 0 : name.hashCode());
+        result = prime * result + id;
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Product other = (Product) obj;
+        if (name == null) {
+            if (other.name != null)
+                return false;
+        } else if (!name.equals(other.name))
+            return false;
+        if (id != other.id)
+            return false;
+        return true;
     }
 }
