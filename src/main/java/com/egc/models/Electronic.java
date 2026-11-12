@@ -5,13 +5,13 @@ public class Electronic extends Product implements Fragile{
     private int guarantee;
     
     @Override
-    public double calculateHandlingFee() {
-        return getPrice()*.05;
+    public double calculateHandlingFee(int amount) {
+        return getPrice()*.05 * amount;
     }
 
     @Override
-    public double getSpecialPackFee() {
-        return 4 * getAmountStorage();
+    public double getSpecialPackFee(int amount) {
+        return 4.0 * amount;
     }
 
     @Override
