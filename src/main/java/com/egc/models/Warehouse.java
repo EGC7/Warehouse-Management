@@ -9,8 +9,17 @@ public class Warehouse implements ManageableStorage{
     private String name;
     private double maxStorageKg;
     private Address address;
+    private WarehouseManager manager;
 
     private ArrayList<Product> products = new ArrayList<>();
+
+    public WarehouseManager getManager() {
+        return manager;
+    }
+
+    public void setManager(WarehouseManager manager) {
+        this.manager = manager;
+    }
 
     public Warehouse(String name, Address addres, double maxStorageKg){
         setName(name);
@@ -66,7 +75,7 @@ public class Warehouse implements ManageableStorage{
             throw new IllegalArgumentException("O produto não estar ser vazio.");
 
         if ( (getActualStorage() + (product.getWeight() * product.getAmountStorage()) ) > this.maxStorageKg)
-            throw new MaxSizeException();
+            throw new MaxSizeException(maxStorageKg, getActualStorage());
             // throw new MaxSizeException("AIIAIAIAAI NÃO AGUENTO");
 
         products.add(product);
@@ -97,7 +106,7 @@ public class Warehouse implements ManageableStorage{
             throw new IllegalArgumentException("A lista contém pelo menos um produto vazio.");
 
         if ( calcListWeight(productList) > this.maxStorageKg)
-            throw new MaxSizeException();
+            throw new MaxSizeException(maxStorageKg, getActualStorage());
 
         products = new ArrayList<>(productList);
         
@@ -122,6 +131,28 @@ public class Warehouse implements ManageableStorage{
     @Override
     public boolean removeProductByName(String name) {
         return products.removeIf(prod -> prod.getName() == name);
+    }
+
+    @Override
+    public boolean buyProductById(int id) {
+        Product target = searchProductById(id);
+
+        if (target == null || target.getAmountStorage() == 0 ) return false;
+        
+        target.setAmountStorage(target.getAmountStorage() - 1);
+        
+        return true;
+    }
+
+    @Override
+    public boolean buyProductByName(String name) {
+        Product target = searchProductByName(name);
+
+        if (target == null || target.getAmountStorage() == 0 ) return false;
+        
+        target.setAmountStorage(target.getAmountStorage() - 1);
+        
+        return true;
     }
 
     @Override
