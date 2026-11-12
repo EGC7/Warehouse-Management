@@ -11,6 +11,9 @@ public interface ManageableStorage {
     
     public boolean removeProductByName(String name);
     public boolean removeProductById(int id);
+    
+    public boolean buyProductByName(String name);
+    public boolean buyProductById(int id);
 
     public Product searchProductByName(String name);
     public Product searchProductById(int id);
