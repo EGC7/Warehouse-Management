@@ -51,6 +51,10 @@ public abstract class PerishableProduct extends Product { // TODO: Adicionar for
 
         setExpirationDate(newDate);
     }
+    
+    public boolean isExpired(){
+        return expirationDate.isBefore(LocalDate.now());
+    }
 
     @Override
     public String toString() {
