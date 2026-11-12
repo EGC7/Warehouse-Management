@@ -5,13 +5,13 @@ public class Drink extends PerishableProduct implements Fragile{
     private boolean isAlcoholic;
     
     @Override
-    public double calculateHandlingFee() {
-        return getPrice()*.03;
+    public double calculateHandlingFee(int amount) {
+        return getPrice()*.03 * amount;
     }
 
     @Override
-    public double getSpecialPackFee() {
-        return 4 * getAmountStorage();
+    public double getSpecialPackFee(int amount) {
+        return 4 * amount;
     }
 
     @Override
